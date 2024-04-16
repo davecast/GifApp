@@ -1,11 +1,14 @@
 import { useState } from "react";
 import AddCategory from "./components/AddCategory";
+import GifGrid from "./components/GifGrid";
 
 export const GifApp = () => {
-  const [categories, setCategories] = useState(["One Punch", "Dragon Ball"]);
+  const [categories, setCategories] = useState(["dragon ball"]);
 
-  const onAddCatergory = () => {
-    setCategories(["Nuevo agregado", ...categories]);
+  const onAddCatergory = (category) => {
+    if (categories.includes(category.toLowerCase())) return;
+
+    setCategories([category, ...categories]);
   };
 
   return (
@@ -14,15 +17,12 @@ export const GifApp = () => {
       <h1>GifApp</h1>
 
       {/*INPUT*/}
-      <AddCategory />
-      {/*BUTTON*/}
-      <button onClick={onAddCatergory}>Agregar</button>
+      <AddCategory onAddNewCategory={onAddCatergory} />
+
       {/*LISTADO DE GIF*/}
-      <ol>
-        {categories.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ol>
+      {categories.map((category) => (
+        <GifGrid key={category} category={category} />
+      ))}
       {/*GIF ITEM*/}
     </>
   );
