@@ -13,17 +13,11 @@ export const GifApp = () => {
 
   return (
     <>
-      {/*TITULO*/}
       <h1>GifApp</h1>
-
-      {/*INPUT*/}
       <AddCategory onAddNewCategory={onAddCatergory} />
-
-      {/*LISTADO DE GIF*/}
       {categories.map((category) => (
         <GifGrid key={category} category={category} />
       ))}
-      {/*GIF ITEM*/}
     </>
   );
 };
